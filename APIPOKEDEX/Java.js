@@ -13,7 +13,7 @@ const nextButton = document.querySelector('.next-btn');
 const searchInput = document.querySelector('#search-input');
 const searchButton = document.querySelector('#search-btn');
 
-let currentPokemonId = 2; // Starting with Ivysaur
+let currentPokemonId = 2;
 let isShiny = false;
 
 async function fetchPokemon(idOrName) {
@@ -26,12 +26,12 @@ async function fetchPokemon(idOrName) {
 }
 
 async function updatePokedex(pokemon, species) {
-    currentPokemonId = pokemon.id; // Actualizar currentPokemonId con el Pokémon buscado
+    currentPokemonId = pokemon.id; 
     const spanishFlavorText = species.flavor_text_entries.find(entry => entry.language.name === 'es');
     
     pokemonName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     pokemonId.textContent = `no. ${pokemon.id}`;
-    pokemonImage.src = isShiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default; // Mostrar imagen normal o shiny según el estado
+    pokemonImage.src = isShiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
     pokemonDescription.textContent = spanishFlavorText ? spanishFlavorText.flavor_text : "Descripción no disponible en español.";
 
     pokemonStats.innerHTML = `
@@ -43,7 +43,7 @@ async function updatePokedex(pokemon, species) {
         <li>Velocidad: ${pokemon.stats[5].base_stat}</li>
     `;
 
-    // Update types
+    
     document.querySelector('.type-container').innerHTML = pokemon.types.map(typeInfo => {
         const typeName = typeInfo.type.name;
         const typeClass = typeName === 'grass' ? 'grass' : typeName === 'poison' ? 'poison' : '';
